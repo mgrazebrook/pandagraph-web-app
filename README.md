@@ -6,6 +6,8 @@ a GraphQL API and exposes it through Flask.
 
 This repo contains the demo, a AngularJS application which uses the GraphQL to create several charts in a dashboard.
 
+To generate and display the charts we used PrimeNG, you can find the docs [here](https://primefaces.org/primeng/showcase/#/setup)
+
 ## Setting up Angular
 
 - Download the current version of Angular.
