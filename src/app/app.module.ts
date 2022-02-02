@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
+import { ChartModule } from 'primeng/chart';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { FooterComponent } from './shared/footer.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ChartModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
