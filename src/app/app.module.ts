@@ -10,12 +10,14 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
 import { ChartModule } from 'primeng/chart';
+import { ExchangeRatesComponent } from './exchange-rates-component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    ExchangeRatesComponent,
   ],
   imports: [
     BrowserModule,
