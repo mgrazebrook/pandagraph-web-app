@@ -7,8 +7,14 @@
   Pandagraph is a Python library which introspects a Pandas database, uses that information to build a GraphQL API and exposes it through Flask.
 </p>
 </div>
-<stacked-graph></stacked-graph>
-<line-chart></line-chart>
+<p-splitter [style]="{'height': '700px'}">
+  <ng-template pTemplate>
+    <stacked-graph></stacked-graph>
+  </ng-template>
+  <ng-template pTemplate>
+    <line-chart></line-chart>
+  </ng-template>
+</p-splitter>
 <router-outlet></router-outlet>
 <app-layout-footer></app-layout-footer>
 
