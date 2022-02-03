@@ -33,3 +33,12 @@ Full details can be found in the [docs](https://primefaces.org/primeng/showcase/
 ```shell
 npm install chart.js --save
 ```
+
+## References
+[PrimeNG](https://www.primefaces.org/primeng/) used for rendering charts in Angular
+
+[Apollo-Angular](https://apollo-angular.com/docs/get-started/) to allow an Angular application to communicate with a GraphQL server
+
+[json-graphql-server](https://github.com/marmelab/json-graphql-server) to setup our mocked GraphQL server
+
+nodemon to server our mocked GraphQL server, in watch mode
