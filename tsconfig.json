@@ -20,7 +20,8 @@
     "module": "es2020",
     "lib": [
       "es2020",
-      "dom"
+      "dom",
+      "esnext.asynciterable"
     ]
   },
   "angularCompilerOptions": {
@@ -28,5 +29,6 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "allowSyntheticDefaultImports": true,
 }
