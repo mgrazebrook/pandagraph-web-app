@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
-import { ExchangeRates } from './exchange-rates.component';
 import { ChartModule } from 'primeng/chart';
 
 import {HttpClientModule} from '@angular/common/http';
@@ -20,7 +19,6 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ExchangeRates,
   ],
   imports: [
     BrowserModule,
