@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Apollo, gql} from 'apollo-angular';
 
 @Component({
   selector: 'app-root',
@@ -8,24 +9,51 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pandagraph-web-app';
 
+  allYearOnYearRevenues: any = [];
+  loading = true;
+  error: any;
+
   basicData: any;
   basicOptions: any;
 
+  constructor(private apollo: Apollo) {}
+
   ngOnInit() {
-    this.basicData = {
-        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-        datasets: [
-            {
-                label: 'My First dataset',
-                backgroundColor: '#42A5F5',
-                data: [65, 59, 0, 81, 56, 55, 40]
-            },
-            {
-                label: 'My Second dataset',
-                backgroundColor: '#FFA726',
-                data: [28, 48, 40, 19, 86, 27, 90]
+    this.apollo
+      .watchQuery({
+        query: gql`
+        {
+            allYearOnYearRevenues {
+              id,
+              month,
+              revenue,
+              expenses
             }
-        ]
-    };
+          }
+        `,
+      })
+      .valueChanges.subscribe((result: any) => {
+        this.allYearOnYearRevenues = result?.data?.allYearOnYearRevenues;
+        this.loading = result.loading;
+        this.error = result.error;
+
+        this.basicData = {
+          labels: this.allYearOnYearRevenues.map((revenue: any) => revenue.month),
+          datasets: [
+              {
+                  label: 'Revenue',
+                  backgroundColor: '#42A5F5',
+                  data: this.allYearOnYearRevenues.map((revenue: any) => revenue.revenue),
+              },
+              {
+                  label: 'Expenses',
+                  backgroundColor: '#FFA726',
+                  data: this.allYearOnYearRevenues.map((revenue: any) => revenue.expenses),
+              }
+          ]
+        };
+
+        console.log(this.basicData)
+      });
   }
 }
