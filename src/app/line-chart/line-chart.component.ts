@@ -13,10 +13,20 @@ export class LineChartComponent implements OnInit {
   loading = true;
   error: any;
 
+  rangeValues!: number[];
   lineData: any;
   lineOptions: any;
 
+  date1 = 0;
+  date2 = 0;
+
   constructor(private apollo: Apollo) { }
+
+  handleChange(e: any) {
+    console.log(e.values)
+    this.date1 = e.values[0];
+    this.date2 = e.values[1];
+  }
 
   ngOnInit(): void {
     this.apollo

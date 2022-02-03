@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule}  from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 import { InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
@@ -16,7 +17,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 
 import { ChartModule } from 'primeng/chart';
 import { SplitterModule } from 'primeng/splitter';
-
+import { SliderModule } from 'primeng/slider';
 
 const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
 
@@ -34,19 +35,23 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
     ChartModule,
     HttpClientModule,
     SplitterModule,
+    SliderModule,
+    FormsModule,
   ],
-  providers: [{
-    provide: APOLLO_OPTIONS,
-    useFactory: (httpLink: HttpLink) => {
-      return {
-        cache: new InMemoryCache(),
-        link: httpLink.create({
-          uri: 'http://localhost:8080/graphql',
-        }),
-      };
+  providers: [
+    {
+      provide: APOLLO_OPTIONS,
+      useFactory: (httpLink: HttpLink) => {
+        return {
+          cache: new InMemoryCache(),
+          link: httpLink.create({
+            uri: 'http://localhost:8080/graphql',
+          }),
+        };
+      },
+      deps: [HttpLink],
     },
-    deps: [HttpLink],
-  }],
-  bootstrap: [AppComponent]
+  ],
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}
