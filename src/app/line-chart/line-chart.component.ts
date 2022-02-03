@@ -15,6 +15,7 @@ export class LineChartComponent implements OnInit {
 
   lineData: any;
   lineOptions: any;
+
   constructor(private apollo: Apollo) { }
 
   ngOnInit(): void {
@@ -41,7 +42,8 @@ export class LineChartComponent implements OnInit {
           labels: this.allDataByMonths.map(
             (dataByMonth: any) => dataByMonth.month
           ),
-          datasets: [{
+          datasets: [
+            {
               label: 'Employee to Customer Ratio',
               borderColor: '#000000',
               backgroundColor: '#000000',
@@ -49,7 +51,8 @@ export class LineChartComponent implements OnInit {
               data: this.allDataByMonths.map(
                 (dataByMonth: any) => dataByMonth.employees / dataByMonth.customers
               ),
-          }, {
+            },
+            {
               label: 'Customer Satisfaction',
               borderColor: '#6ec2ac',
               backgroundColor: '#6ec2ac',
@@ -57,9 +60,9 @@ export class LineChartComponent implements OnInit {
               data: this.allDataByMonths.map(
                 (dataByMonth: any) => dataByMonth.satisfaction
               ),
-          }]
-      };
-  });
-}
-  
+            }
+          ]
+        };
+    });
+  }
 }

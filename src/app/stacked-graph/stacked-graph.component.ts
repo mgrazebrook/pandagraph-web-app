@@ -64,8 +64,8 @@ export class StackedGraphComponent {
               fill: true,
               data: this.allDataByMonths.map(
                 (dataByMonth: any) => dataByMonth.expenses
-                ),
-              },
+              ),
+            },
             {
               type: 'bar',
               label: 'Profit',
