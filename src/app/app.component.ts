@@ -13,8 +13,8 @@ export class AppComponent {
   loading = true;
   error: any;
 
-  data: any;
-  chartOptions: any;
+  stackedData: any;
+  stackedOptions: any;
 
   constructor(private apollo: Apollo) {}
 
@@ -25,10 +25,10 @@ export class AppComponent {
           {
             allDataByMonths {
               id
-              satisfaction
-              month
-              employees
+              revenue
+              expenses
               customers
+              month
             }
           }
         `,
@@ -38,80 +38,86 @@ export class AppComponent {
         this.loading = result.loading;
         this.error = result.error;
 
-        this.data = {
+        this.stackedData = {
           labels: this.allDataByMonths.map(
             (dataByMonth: any) => dataByMonth.month
           ),
           datasets: [
             {
-              type: 'bar',
-              label: 'Customer Satisfcation',
+              type: 'line',
+              label: 'No. of Customers',
               yAxisID: 'y1',
-              borderColor: '#42A5F5',
-              borderWidth: 2,
-              fill: false,
-              data: this.allDataByMonths.map(
-                (dataByMonth: any) => dataByMonth.satisfaction
-              ),
-            },
-            {
-              type: 'line',
-              label: 'No.of Employees',
-              yAxisID: 'y',
-              borderColor: '#FFA726',
-              borderWidth: 2,
-              fill: false,
-              data: this.allDataByMonths.map(
-                (dataByMonth: any) => dataByMonth.employees
-              ),
-            },
-            {
-              type: 'line',
-              label: 'No.of Customers',
-              yAxisID: 'y',
-              borderColor: '#FFA726',
+              borderColor: '#1f9925',
+              backgroundColor: '#1f9925',
               borderWidth: 2,
               fill: false,
               data: this.allDataByMonths.map(
                 (dataByMonth: any) => dataByMonth.customers
               ),
             },
+            {
+              type: 'bar',
+              label: 'Expenses',
+              yAxisID: 'y',
+              borderColor: '#c29cf7',
+              backgroundColor: '#c29cf7',
+              borderWidth: 2,
+              fill: true,
+              data: this.allDataByMonths.map(
+                (dataByMonth: any) => dataByMonth.expenses
+                ),
+              },
+            {
+              type: 'bar',
+              label: 'Profit',
+              yAxisID: 'y',
+              borderColor: '#fcc679',
+              backgroundColor: '#fcc679',
+              borderWidth: 2,
+              fill: true,
+              data: this.allDataByMonths.map(
+                (dataByMonth: any) => dataByMonth.revenue - dataByMonth.expenses
+              ),
+            },
           ],
         };
-        this.chartOptions = {
-          scales: {
-            x: {
-              ticks: {
-                color: '#495057',
-              },
-              grid: {
-                color: '#ebedef',
-              },
+        this.stackedOptions = {
+        scales: {
+          x: {
+            stacked: true,
+            ticks: {
+              color: '#495057'
             },
-            y: {
-              type: 'linear',
-              display: true,
-              position: 'left',
-              ticks: {
-                min: 0,
-                max: 300,
-                color: '#495057',
-              },
+            grid: {
+              color: '#ebedef'
+            }
+          },
+          y: {
+            type: 'linear',
+            display: true,
+            position: 'left',
+            ticks: {
+              min: 0,
+              max: 300,
+              color: '#495057',
             },
-            y1: {
-              type: 'linear',
-              display: true,
-              position: 'right',
-              ticks: {
-                min: 0,
-                max: 5,
-                color: '#495057',
-              },
+            stacked: true,
+            grid: {
+              color: '#ebedef'
+            }
+          },
+          y1: {
+            type: 'linear',
+            display: true,
+            position: 'right',
+            ticks: {
+              min: 0,
+              max: 5,
+              color: '#495057',
             },
           },
-        };
-
-        console.log(this.data);
-      });
+        },
+      };
+    });
   }
 }
