@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
 import { ChartModule } from 'primeng/chart';
-import { StackedGraphComponent } from './stacked-graph.component';
+import { StackedGraphComponent } from './stacked-graph/stacked-graph.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {APOLLO_OPTIONS} from 'apollo-angular';
