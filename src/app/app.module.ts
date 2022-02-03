@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
 import { ChartModule } from 'primeng/chart';
+import { StackedGraphComponent } from './stacked-graph.component';
 
 import {HttpClientModule} from '@angular/common/http';
 import {APOLLO_OPTIONS} from 'apollo-angular';
@@ -19,6 +20,7 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
     AppComponent,
     HeaderComponent,
     FooterComponent,
+    StackedGraphComponent,
   ],
   imports: [
     BrowserModule,
