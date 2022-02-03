@@ -1,20 +1,20 @@
 import { Component } from '@angular/core';
-import {Apollo, gql} from 'apollo-angular';
+import { Apollo, gql } from 'apollo-angular';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
   title = 'pandagraph-web-app';
 
-  allYearOnYearRevenues: any = [];
+  allDataByMonths: any = [];
   loading = true;
   error: any;
 
-  basicData: any;
-  basicOptions: any;
+  data: any;
+  chartOptions: any;
 
   constructor(private apollo: Apollo) {}
 
@@ -22,38 +22,96 @@ export class AppComponent {
     this.apollo
       .watchQuery({
         query: gql`
-        {
-            allYearOnYearRevenues {
-              id,
-              month,
-              revenue,
-              expenses
+          {
+            allDataByMonths {
+              id
+              satisfaction
+              month
+              employees
+              customers
             }
           }
         `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.allYearOnYearRevenues = result?.data?.allYearOnYearRevenues;
+        this.allDataByMonths = result?.data?.allDataByMonths;
         this.loading = result.loading;
         this.error = result.error;
 
-        this.basicData = {
-          labels: this.allYearOnYearRevenues.map((revenue: any) => revenue.month),
+        this.data = {
+          labels: this.allDataByMonths.map(
+            (dataByMonth: any) => dataByMonth.month
+          ),
           datasets: [
-              {
-                  label: 'Revenue',
-                  backgroundColor: '#42A5F5',
-                  data: this.allYearOnYearRevenues.map((revenue: any) => revenue.revenue),
+            {
+              type: 'bar',
+              label: 'Customer Satisfcation',
+              yAxisID: 'y1',
+              borderColor: '#42A5F5',
+              borderWidth: 2,
+              fill: false,
+              data: this.allDataByMonths.map(
+                (dataByMonth: any) => dataByMonth.satisfaction
+              ),
+            },
+            {
+              type: 'line',
+              label: 'No.of Employees',
+              yAxisID: 'y',
+              borderColor: '#FFA726',
+              borderWidth: 2,
+              fill: false,
+              data: this.allDataByMonths.map(
+                (dataByMonth: any) => dataByMonth.employees
+              ),
+            },
+            {
+              type: 'line',
+              label: 'No.of Customers',
+              yAxisID: 'y',
+              borderColor: '#FFA726',
+              borderWidth: 2,
+              fill: false,
+              data: this.allDataByMonths.map(
+                (dataByMonth: any) => dataByMonth.customers
+              ),
+            },
+          ],
+        };
+        this.chartOptions = {
+          scales: {
+            x: {
+              ticks: {
+                color: '#495057',
               },
-              {
-                  label: 'Expenses',
-                  backgroundColor: '#FFA726',
-                  data: this.allYearOnYearRevenues.map((revenue: any) => revenue.expenses),
-              }
-          ]
+              grid: {
+                color: '#ebedef',
+              },
+            },
+            y: {
+              type: 'linear',
+              display: true,
+              position: 'left',
+              ticks: {
+                min: 0,
+                max: 300,
+                color: '#495057',
+              },
+            },
+            y1: {
+              type: 'linear',
+              display: true,
+              position: 'right',
+              ticks: {
+                min: 0,
+                max: 5,
+                color: '#495057',
+              },
+            },
+          },
         };
 
-        console.log(this.basicData)
+        console.log(this.data);
       });
   }
 }
