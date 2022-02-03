@@ -1,1 +1,30 @@
 /* You can add global styles to this file, and also import other style files */
+.header,
+.footer {
+  width: 100%;
+  background: #333;
+  padding: 10px 0;
+  color: #fff;
+}
+
+.header .container {
+  margin: 0 auto;
+}
+
+a.nav-link {
+  color: #fff;
+  text-decoration: none;
+  padding: 7px 25px;
+  display: inline-block;
+  font-size: x-large;
+}
+
+.about,
+.card,
+.footer .container {
+  margin-left: 25px;
+}
+
+.card {
+  display: flexbox;
+}
