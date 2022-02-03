@@ -6,7 +6,7 @@ import {Apollo, gql} from 'apollo-angular';
   templateUrl: './exchange-rates.component.html'
 })
 export class ExchangeRates implements OnInit {
-  rates: any;
+  allYearOnYearRevenues: any;
   loading = true;
   error: any;
 
@@ -16,16 +16,18 @@ export class ExchangeRates implements OnInit {
     this.apollo
       .watchQuery({
         query: gql`
-          {
-            rates(currency: "USD") {
-              currency
-              rate
+        {
+            allYearOnYearRevenues {
+              id,
+              month,
+              revenue,
+              expenses
             }
           }
         `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.rates = result?.data?.rates;
+        this.allYearOnYearRevenues = result?.data?.allYearOnYearRevenues;
         this.loading = result.loading;
         this.error = result.error;
       });
