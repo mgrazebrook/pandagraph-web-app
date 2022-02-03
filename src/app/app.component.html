@@ -1,8 +1,13 @@
 
 <app-layout-header></app-layout-header>
-<h1>Welcome to PandaGraph</h1>
+<div class="about">
+<h1>Welcome</h1>
+<p>
+  A demo dashboard to show off Pandagraph. <br/>
+  Pandagraph is a Python library which introspects a Pandas database, uses that information to build a GraphQL API and exposes it through Flask.
+</p>
+</div>
 <div class="card">
-  <h5>Vertical</h5>
   <p-chart type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
 </div>
 <router-outlet></router-outlet>
