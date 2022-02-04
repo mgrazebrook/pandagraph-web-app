@@ -64,23 +64,36 @@ export class LineChartComponent implements OnInit {
   }
 
   handleOnClickOutside() {
+    console.log(`{
+      query get_data {
+        getPandagraphDemoDf(fromDate:${parseInt(this.selectedDate1)}, toDate: ${parseInt(this.selectedDate2)}) {
+        id
+        month
+        revenue
+        employees
+        customers
+        satisfaction
+        }
+        }
+    }`)
     console.log('On handleOnClickOutside event triggered')
     this.apollo
       .watchQuery({
         query: gql`
           {
-            DataByMonth(id: "1") {
+              getPandagraphDemoDf(fromDate:${parseInt(this.selectedDate1)}, toDate: ${parseInt(this.selectedDate2)}) {
               id
-              employees
-              satisfaction
-              customers
               month
-            }
+              revenue
+              employees
+              customers
+              satisfaction
+              }
           }
         `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.allDataByMonths = result?.data?.allDataByMonths;
+        this.allDataByMonths = result?.data?.getPandagraphDemoDf;
         this.loading = result.loading;
         this.error = result.error;
 
@@ -116,19 +129,20 @@ export class LineChartComponent implements OnInit {
     this.apollo
       .watchQuery({
         query: gql`
-          {
-            allDataByMonths {
-              id
-              employees
-              satisfaction
-              customers
-              month
+        {
+          getPandagraphDemoDf(fromDate:20190301, toDate: 20210401) {
+            id
+            month
+            revenue
+            employees
+            customers
+            satisfaction
             }
           }
         `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.allDataByMonths = result?.data?.allDataByMonths;
+        this.allDataByMonths = result?.data?.getPandagraphDemoDf;
         this.loading = result.loading;
         this.error = result.error;
 

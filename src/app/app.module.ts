@@ -50,7 +50,7 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
         return {
           cache: new InMemoryCache(),
           link: httpLink.create({
-            uri: 'http://localhost:8080/graphql',
+            uri: 'http://127.0.0.1:5000/graphql',
           }),
         };
       },
