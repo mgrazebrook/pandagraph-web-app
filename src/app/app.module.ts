@@ -1,17 +1,22 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule}  from '@angular/common/http';
+
+import { InMemoryCache } from '@apollo/client/core';
+import { APOLLO_OPTIONS } from 'apollo-angular';
+import { HttpLink } from 'apollo-angular/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+
 import { HeaderComponent } from './shared/header.component';
 import { FooterComponent } from './shared/footer.component';
-import { ExchangeRates } from './exchange-rates.component';
-import { ChartModule } from 'primeng/chart';
+import { StackedGraphComponent } from './stacked-graph/stacked-graph.component';
+import { LineChartComponent } from './line-chart/line-chart.component';
 
-import {HttpClientModule} from '@angular/common/http';
-import {APOLLO_OPTIONS} from 'apollo-angular';
-import {HttpLink} from 'apollo-angular/http';
-import {InMemoryCache} from '@apollo/client/core';
+import { ChartModule } from 'primeng/chart';
+import { SplitterModule } from 'primeng/splitter';
+
 
 const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
 
@@ -20,13 +25,15 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
     AppComponent,
     HeaderComponent,
     FooterComponent,
-    ExchangeRates,
+    StackedGraphComponent,
+    LineChartComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ChartModule,
-    HttpClientModule
+    HttpClientModule,
+    SplitterModule,
   ],
   providers: [{
     provide: APOLLO_OPTIONS,
