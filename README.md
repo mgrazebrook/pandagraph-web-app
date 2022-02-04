@@ -34,6 +34,11 @@ Full details can be found in the [docs](https://primefaces.org/primeng/showcase/
 npm install chart.js --save
 ```
 
+## Running the app locally
+```shell
+npm install && npm start
+```
+
 ## References
 [PrimeNG](https://www.primefaces.org/primeng/) used for rendering charts in Angular
 
