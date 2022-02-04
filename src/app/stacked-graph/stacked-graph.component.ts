@@ -21,19 +21,22 @@ export class StackedGraphComponent {
     this.apollo
       .watchQuery({
         query: gql`
-          {
-            allDataByMonths {
-              id
-              revenue
-              expenses
-              customers
-              month
+        {
+          getPandagraphDemoDf(fromDate:20190301, toDate: 20210401) {
+            id
+            month
+            revenue
+            employees
+            customers
+            satisfaction
             }
           }
         `,
       })
       .valueChanges.subscribe((result: any) => {
-        this.allDataByMonths = result?.data?.allDataByMonths;
+        console.log('result', result);
+
+        this.allDataByMonths = result?.data?.getPandagraphDemoDf;
         this.loading = result.loading;
         this.error = result.error;
 
@@ -75,7 +78,7 @@ export class StackedGraphComponent {
               borderWidth: 2,
               fill: true,
               data: this.allDataByMonths.map(
-                (dataByMonth: any) => dataByMonth.revenue - dataByMonth.expenses
+                (dataByMonth: any) => dataByMonth.revenue
               ),
             },
           ],
