@@ -1,7 +1,6 @@
 <div class="card">
   <h5>Satisfaction Survey Results</h5>
-  <p [innerText]="date1"></p>
-  <p [innerText]="date2"></p>
-  <p-slider [(ngModel)]="rangeValues" [min]="0" [max]="50" (onChange)="handleChange($event)" [range]="true"></p-slider>
-  <p-chart type="line" [data]="lineData" [options]="lineOptions" width="800px"></p-chart>
+  <p-calendar [(ngModel)]="value" [showWeek]="true" selectionMode="range" (onSelect)="handleDateSelect($event)" [minDate]="minDateValue" [maxDate]="maxDateValue" [defaultDate]="defaultDateValue" (onClickOutside)="handleOnClickOutside()"></p-calendar>
+  <!-- <p-slider [(ngModel)]="rangeValues" [min]="0" [max]="50" (onChange)="handleChange($event)" [range]="true"></p-slider> -->
+  <p-chart type="line" [data]="lineData" [options]="lineOptions" width="700px"></p-chart>
 </div>

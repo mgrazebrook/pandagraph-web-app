@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from 
+    "@angular/platform-browser/animations";
 
 import { InMemoryCache } from '@apollo/client/core';
 import { APOLLO_OPTIONS } from 'apollo-angular';
@@ -18,6 +20,7 @@ import { LineChartComponent } from './line-chart/line-chart.component';
 import { ChartModule } from 'primeng/chart';
 import { SplitterModule } from 'primeng/splitter';
 import { SliderModule } from 'primeng/slider';
+import {CalendarModule} from 'primeng/calendar';
 
 const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
 
@@ -34,9 +37,11 @@ const uri = 'https://48p1r2roz4.sse.codesandbox.io'; // our GraphQL API
     AppRoutingModule,
     ChartModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     SplitterModule,
     SliderModule,
     FormsModule,
+    CalendarModule
   ],
   providers: [
     {
